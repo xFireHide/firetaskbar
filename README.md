@@ -2,7 +2,7 @@
 
 Launcher de aplicativos GTK4 para GNOME. Abre com a tecla **Super** (Windows).
 
-![Preview](https://raw.githubusercontent.com/xFireHide/firetaskbar/main/preview.png)
+![Preview](https://raw.githubusercontent.com/xFireHide/firetaskbar/main/preview.jpg)
 
 ## Instalar
 
