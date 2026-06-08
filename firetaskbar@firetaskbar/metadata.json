@@ -1,0 +1,8 @@
+{
+    "name": "FireTaskBar",
+    "description": "Botão na barra para abrir o FireTaskBar Iniciar",
+    "uuid": "firetaskbar@firetaskbar",
+    "shell-version": ["45", "46", "47", "48", "49"],
+    "version": 1,
+    "url": ""
+}

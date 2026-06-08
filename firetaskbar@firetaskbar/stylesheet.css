@@ -1,0 +1,255 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   FireTaskBar — Taskbar
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Barra de tarefas (modo largura total) ─────────────────────────────────── */
+.meu-panel {
+    background-color: rgba(18, 18, 22, 0.92);
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+    box-shadow: 0 -2px 16px rgba(0, 0, 0, 0.50);
+}
+
+/* ── Barra estreita (não ocupa a largura toda) — cantos superiores arredondados */
+.meu-panel-narrow {
+    border-radius: 16px 16px 0 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    border-left: 1px solid rgba(255, 255, 255, 0.10);
+    border-right: 1px solid rgba(255, 255, 255, 0.10);
+    box-shadow:
+        0 -6px 28px rgba(0, 0, 0, 0.60),
+        0 1px 0 rgba(255, 255, 255, 0.05) inset;
+}
+
+/* ── Modo Dock (estilo macOS) ──────────────────────────────────────────────── */
+.meu-panel-dock {
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.13);
+    background-color: rgba(20, 20, 26, 0.93);
+    box-shadow:
+        0 8px 36px rgba(0, 0, 0, 0.70),
+        0 1px 0   rgba(255, 255, 255, 0.06) inset;
+}
+
+/* ── Botão Iniciar ─────────────────────────────────────────────────────────── */
+.meu-start-btn {
+    padding: 0 14px;
+    margin: 5px 4px;
+    min-width: 48px;
+    border: none;
+    border-radius: 10px;
+    background: none;
+    box-shadow: none;
+    color: rgba(255, 255, 255, 0.88);
+    transition-duration: 100ms;
+}
+.meu-start-btn:hover {
+    background-color: rgba(255, 255, 255, 0.09);
+    color: #ffffff;
+}
+.meu-start-btn:active {
+    background-color: rgba(255, 255, 255, 0.16);
+}
+
+/* Botão Iniciar no modo dock — cantos esquerdos arredondados */
+.meu-start-btn-dock {
+    border-radius: 10px;
+}
+
+/* ── Separador vertical ────────────────────────────────────────────────────── */
+.meu-vsep {
+    width: 1px;
+    background-color: rgba(255, 255, 255, 0.08);
+    margin: 9px 0;
+}
+
+/* ── Lista de janelas ──────────────────────────────────────────────────────── */
+.meu-win-list {
+    spacing: 1px;
+    padding: 0 4px;
+}
+
+/* ── Botão de janela ───────────────────────────────────────────────────────── */
+.meu-win-btn {
+    min-width: 44px;
+    min-height: 0;
+    padding: 0 9px;
+    border: none;
+    border-radius: 6px;
+    background: none;
+    box-shadow: none;
+    transition-duration: 90ms;
+}
+.meu-win-btn:hover {
+    background-color: rgba(255, 255, 255, 0.10);
+}
+.meu-win-btn:active {
+    background-color: rgba(255, 255, 255, 0.18);
+}
+
+/* Janela em foco */
+.meu-win-btn.focused {
+    background-color: rgba(255, 255, 255, 0.10);
+}
+
+/* Remove o anel/contorno azul de foco de teclado que o GNOME desenha no clique */
+.meu-win-btn:focus {
+    outline: none;
+    border: none;
+    box-shadow: none;
+}
+
+/* Grupo com 2+ janelas: indicador base mais largo (dica de "empilhado") */
+.meu-win-btn.grouped .meu-indicator {
+    width: 11px;
+}
+
+/* Badge de contagem de janelas do grupo (canto inferior-direito, fora do ícone) */
+.meu-count {
+    font-size: 8px;
+    font-weight: 700;
+    color: #06151d;
+    background-color: #4fc3f7;
+    border-radius: 8px;
+    min-width: 8px;
+    padding: 0 4px;
+    margin-right: -3px;
+    margin-bottom: -2px;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    border: 1.5px solid rgba(18, 18, 22, 0.95);
+}
+
+/* Janela minimizada */
+.meu-win-btn.minimized .meu-win-icon {
+    opacity: 0.48;
+}
+
+/* ── Indicador de janela (fixo no fundo via BinLayout y_align: END) ────────── */
+.meu-indicator {
+    height: 3px;
+    width: 5px;
+    border-radius: 2px;
+    margin-bottom: 3px;
+    background-color: rgba(255, 255, 255, 0.32);
+    transition-duration: 150ms;
+}
+
+.meu-win-btn.focused .meu-indicator {
+    width: 18px;
+    background-color: #4fc3f7;
+}
+
+.meu-win-btn.minimized .meu-indicator {
+    width: 4px;
+    background-color: rgba(255, 255, 255, 0.20);
+}
+
+/* ── Tooltip ───────────────────────────────────────────────────────────────── */
+.meu-tooltip {
+    background-color: rgba(26, 26, 32, 0.97);
+    border: 1px solid rgba(255, 255, 255, 0.11);
+    border-radius: 7px;
+    padding: 5px 12px;
+    color: rgba(255, 255, 255, 0.90);
+    font-size: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.55);
+}
+
+/* ── Prévia de janelas (miniaturas ao passar o mouse, estilo Windows) ───────── */
+.meu-preview {
+    background-color: rgba(24, 24, 30, 0.96);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 14px;
+    padding: 8px;
+    spacing: 8px;
+    box-shadow: 0 12px 44px rgba(0, 0, 0, 0.62);
+}
+.meu-preview-card {
+    border-radius: 9px;
+    padding: 7px;
+    background-color: rgba(255, 255, 255, 0.04);
+    border: 1px solid transparent;
+    transition-duration: 110ms;
+}
+.meu-preview-card:hover {
+    background-color: rgba(255, 255, 255, 0.13);
+    border-color: rgba(255, 255, 255, 0.20);
+}
+.meu-preview-title {
+    font-size: 11px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.86);
+    max-width: 200px;
+    margin-bottom: 6px;
+    padding: 0 2px;
+}
+.meu-preview-thumb {
+    border-radius: 6px;
+    background-color: rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+.meu-preview-close {
+    color: #ffffff;
+    background-color: rgba(38, 38, 46, 0.92);
+    border-radius: 16px;
+    padding: 2px;
+    margin: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+    transition-duration: 110ms;
+}
+.meu-preview-close:hover {
+    background-color: rgba(224, 64, 64, 0.96);
+    border-color: rgba(255, 255, 255, 0.30);
+}
+
+/* ── Modo ícone + nome ─────────────────────────────────────────────────────── */
+.meu-win-btn.with-label {
+    min-width: 120px;
+    max-width: 200px;
+    padding: 0 10px;
+}
+
+.meu-win-inner {
+    spacing: 7px;
+}
+
+.meu-win-label {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.82);
+    max-width: 150px;
+}
+
+.meu-win-btn.focused .meu-win-label  { color: rgba(255, 255, 255, 0.97); }
+.meu-win-btn.minimized .meu-win-label { color: rgba(255, 255, 255, 0.38); }
+
+/* ── Botão de app fixado sem janela aberta ─────────────────────────────────── */
+.meu-pinned-launcher {
+    opacity: 0.70;
+}
+.meu-pinned-launcher:hover {
+    opacity: 1.0;
+}
+
+/* Indicador para app fixado sem janela (pontinho menor e mais fraco) */
+.meu-indicator-pinned {
+    height: 3px;
+    width: 3px;
+    background-color: rgba(255, 255, 255, 0.22);
+}
+
+/* Indicador de janela de app fixado (igual ao normal, mas com borda colorida) */
+.meu-win-btn.pinned .meu-indicator {
+    background-color: rgba(79, 195, 247, 0.45);
+}
+.meu-win-btn.pinned.focused .meu-indicator {
+    background-color: #4fc3f7;
+    width: 18px;
+}
+
+/* ── Cabeçalho do menu de configuração rápida ─────────────────────────────── */
+.firetaskbar-header {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.42);
+    letter-spacing: 0.06em;
+}
