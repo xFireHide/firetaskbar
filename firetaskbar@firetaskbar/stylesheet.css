@@ -107,8 +107,8 @@
 .meu-count {
     font-size: 8px;
     font-weight: 700;
-    color: #06151d;
-    background-color: #4fc3f7;
+    color: #2a1200;
+    background-color: #ff7a1a;
     border-radius: 8px;
     min-width: 8px;
     padding: 0 4px;
@@ -136,7 +136,7 @@
 
 .meu-win-btn.focused .meu-indicator {
     width: 18px;
-    background-color: #4fc3f7;
+    background-color: #ff7a1a;
 }
 
 .meu-win-btn.minimized .meu-indicator {
@@ -240,10 +240,10 @@
 
 /* Indicador de janela de app fixado (igual ao normal, mas com borda colorida) */
 .meu-win-btn.pinned .meu-indicator {
-    background-color: rgba(79, 195, 247, 0.45);
+    background-color: rgba(255, 122, 26, 0.45);
 }
 .meu-win-btn.pinned.focused .meu-indicator {
-    background-color: #4fc3f7;
+    background-color: #ff7a1a;
     width: 18px;
 }
 
