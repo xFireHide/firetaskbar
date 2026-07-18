@@ -1,88 +1,49 @@
 # FireTaskBar
 
-Launcher de aplicativos GTK4 para GNOME. Abre com a tecla **Super** (Windows).
+GTK4 application launcher for GNOME. Opens with the **Super** (Windows) key.
 
 ![Preview](https://raw.githubusercontent.com/xFireHide/firetaskbar/main/preview.jpg)
 
-## Instalar
+## Install
 
-### Uma linha (recomendado — após formatar o Linux)
+One-liner (recommended):
 
 ```bash
 bash <(curl -fsSL https://raw.githubusercontent.com/xFireHide/firetaskbar/main/instalar.sh)
 ```
 
-### Ou clonar e instalar
+Or clone and run `bash firetaskbar/instalar.sh`. The installer handles everything:
+deps (PyGObject, GTK4), copies files to `~/.local/share/firetaskbar/`, sets up
+autostart, and binds the **Super** key.
 
-```bash
-git clone https://github.com/xFireHide/firetaskbar.git
-bash firetaskbar/instalar.sh
-```
+Uninstall: `bash ~/.local/share/firetaskbar/desinstalar.sh`
 
-O instalador faz tudo automaticamente:
-- Instala as dependências (PyGObject, GTK4)
-- Copia os arquivos para `~/.local/share/firetaskbar/`
-- Configura o autostart (inicia com o sistema)
-- Mapeia a tecla **Super** para abrir o menu
+Dependencies (installed automatically): `python3-gobject gtk4` (Fedora/Nobara),
+`python3-gi gir1.2-gtk-4.0` (Ubuntu/Debian), `python-gobject gtk4` (Arch).
+Optional `gtk4-layer-shell` anchors the menu to the screen on Wayland.
 
-## Desinstalar
+## Usage
 
-```bash
-bash ~/.local/share/firetaskbar/desinstalar.sh
-```
+| Action | How |
+|---|---|
+| Open / close | **Super** key |
+| Search | type in the search box |
+| Filter by category | click the left sidebar |
+| Open app | click a card |
+| Close | `Esc` or click outside |
+| Account / Menu settings | avatar/name and gear icon in the footer |
+| Lock / Log out / Restart / Shut down | footer buttons (right) |
 
-## Dependências
+**Menu settings** (footer gear): Position (Left/Center/Right, applies on next open),
+Width (Narrow/Medium/Wide, live), and Color (own or inherited from the bar).
 
-Instaladas automaticamente pelo `instalar.sh`:
+## Troubleshooting
 
-| Distro | Pacotes |
-|--------|---------|
-| Fedora / Nobara | `python3-gobject gtk4` |
-| Ubuntu / Debian | `python3-gi gir1.2-gtk-4.0` |
-| Arch Linux | `python-gobject gtk4` |
+- **Super doesn't open the menu** → Settings → Keyboard → Shortcuts → Custom →
+  **FireTaskBar** → press the Windows key.
+- **Daemon didn't start** → `cat /tmp/firetaskbar.log`, then run
+  `python3 ~/.local/share/firetaskbar/firetaskbar.py`.
+- **Menu floats in the center** → the GNOME Shell extension anchors it; after
+  editing the extension you must log out/in on Wayland to reload it.
 
-Opcional: `gtk4-layer-shell` (ancora o menu na tela via Wayland — como o ArcMenu)
-
-## Uso
-
-| Ação | Como |
-|------|------|
-| Abrir / fechar | Tecla **Super** (Windows) |
-| Pesquisar | Digite na caixa de busca |
-| Filtrar por categoria | Clique na sidebar esquerda |
-| Abrir app | Clique no card |
-| Fechar | `Esc` ou clique fora |
-| Conta de usuário | Clique no **avatar/nome** no rodapé |
-| Configurações do Menu | Clique na **engrenagem** do rodapé |
-| Bloquear / Sair / Reiniciar / Desligar | Botões no rodapé (à direita) |
-
-### Configurações do Menu
-
-Pela engrenagem no rodapé. O que dá pra ajustar:
-
-| Opção | Valores | Observação |
-|-------|---------|------------|
-| **Posição** | Esquerda · Centro · Direita | Vale na **próxima abertura** do menu (a extensão reancora ao abrir). |
-| **Largura** | Estreito · Médio · Largo | Aplica na hora. |
-| **Cor** | Própria ou herdada da barra | Desligada = usa a cor da barra de tarefas. |
-
-## Problemas comuns
-
-**A tecla Super não abre o menu**
-→ Configurações → Teclado → Atalhos → Atalhos Personalizados → **FireTaskBar** → pressione a tecla Windows
-
-**Daemon não iniciou**
-```bash
-cat /tmp/firetaskbar.log
-python3 ~/.local/share/firetaskbar/firetaskbar.py
-```
-
-**O menu abre longe da barra (flutuando no centro)**
-→ Quem ancora o menu na barra é a extensão do GNOME Shell. Depois de alterar a
-extensão é preciso **logout/login** no Wayland para o GNOME recarregar o módulo
-(`gnome-extensions disable/enable` não basta). Detalhes em [ARQUITETURA.md](ARQUITETURA.md#posicionamento-por-que-o-gnome-não-usa-layer-shell).
-
-## Para quem desenvolve
-
-Arquitetura, ciclo de vida do daemon, posicionamento e como recarregar cada
-parte: veja **[ARQUITETURA.md](ARQUITETURA.md)**.
+Architecture, daemon lifecycle, and positioning: see **[ARQUITETURA.md](ARQUITETURA.md)**.
